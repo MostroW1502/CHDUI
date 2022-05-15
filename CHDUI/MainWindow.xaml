@@ -1,0 +1,56 @@
+﻿<Window x:Class="CHDUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CHDUI"
+        mc:Ignorable="d"
+        Title="CHD UI"
+        Width="800"
+        Height="600"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Column="0" Name="FileDataGrid" AllowDrop="True" AutoGenerateColumns="False" IsReadOnly="True" Drop="FileDataGrid_Drop">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="FileName" Binding="{Binding FileInfo.Name}" Width="70*"/>
+                <DataGridTextColumn Header="Activity" Binding="{Binding Activity}" Width="15*"/>
+                <DataGridTextColumn Header="Result" Binding="{Binding Result}" Width="15*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="30*"/>
+            </Grid.RowDefinitions>
+
+            <TextBox Grid.Row="0" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged" Text="{Binding ProcessOutput, Mode=OneWay}"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="33*"/>
+                    <ColumnDefinition Width="34*"/>
+                    <ColumnDefinition Width="33*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="33*"/>
+                    <RowDefinition Height="34*"/>
+                    <RowDefinition Height="33*"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="0" Grid.Row="0" Name="ButtonOutputFolder" Content="_Output Folder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" IsEnabled="{Binding ButtonOutputFolderEnabled}" Click="ButtonOutputFolder_Click"/>
+                <Button Grid.Column="1" Grid.Row="0" Name="ButtonGo" Content="_GO" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" IsEnabled="{Binding ButtonGoEnabled}" Click="ButtonGo_Click"/>
+                <Button Grid.Column="2" Grid.Row="0" Name="ButtonClear" Content="_Clear" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" IsEnabled="{Binding ButtonClearEnabled}" Click="ButtonClear_Click"/>
+
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Name="TextOutputFolder" Text="{Binding SelectedOutputFolder}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                <Label Grid.Column="0" Grid.Row="2" Name="LabelProgress" Content="{Binding FileProgress}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
