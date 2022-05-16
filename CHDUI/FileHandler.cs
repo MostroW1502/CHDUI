@@ -34,6 +34,8 @@ namespace CHDUI
         {
             FileEntries.Clear();
             current = 0;
+            outputdata = "";
+            errordata = "";
             UpdateProperties();
         }
 
@@ -177,6 +179,7 @@ namespace CHDUI
             OnPropertyChanged(nameof(Current));
             OnPropertyChanged(nameof(ButtonGoEnabled));
             OnPropertyChanged(nameof(ButtonClearEnabled));
+            OnPropertyChanged(nameof(ButtonOutputFolderEnabled));
             OnPropertyChanged(nameof(FileProgress));
             OnPropertyChanged(nameof(ProcessOutput));
         }
